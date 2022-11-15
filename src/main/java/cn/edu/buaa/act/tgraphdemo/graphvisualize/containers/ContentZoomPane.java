@@ -26,16 +26,11 @@ package cn.edu.buaa.act.tgraphdemo.graphvisualize.containers;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyDoubleWrapper;
 import javafx.geometry.Bounds;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 /**
  * This class provides zooming and panning for a JavaFX node.
@@ -72,32 +67,8 @@ public class ContentZoomPane extends BorderPane {
         content.toFront();
 
         setCenter(center);
-        setRight(createSlider());
 
         enablePanAndZoom();
-    }
-
-    private Node createSlider() {
-
-        Slider slider = new Slider(MIN_SCALE, MAX_SCALE, MIN_SCALE);
-        slider.setOrientation(Orientation.VERTICAL);
-        slider.setShowTickMarks(true);
-        slider.setShowTickLabels(true);
-        slider.setMajorTickUnit(SCROLL_DELTA);
-        slider.setMinorTickCount(1);
-        slider.setBlockIncrement(0.125f);
-        slider.setSnapToTicks(true);
-
-        Text label = new Text("Zoom");
-
-        VBox paneSlider = new VBox(slider, label);
-
-        paneSlider.setPadding(new Insets(10, 10, 10, 10));
-        paneSlider.setSpacing(10);
-
-        slider.valueProperty().bind(this.scaleFactorProperty());
-
-        return paneSlider;
     }
 
     public void setContentPivot(double x, double y) {

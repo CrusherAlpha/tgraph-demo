@@ -34,20 +34,24 @@ import javafx.scene.layout.HBox;
  */
 public class SmartGraphDemoContainer extends BorderPane {
 
+    private final ControlPane control;
+
     public SmartGraphDemoContainer(SmartGraphPanel graphView) {
         
         setCenter(new ContentZoomPane(graphView));
         
-        //create bottom pane with controls
-        HBox bottom = new HBox(10);
-        
-        CheckBox automatic = new CheckBox("Automatic layout");
-        automatic.selectedProperty().bindBidirectional(graphView.automaticLayoutProperty());
-        
-        bottom.getChildren().add(automatic);
-        
-        setBottom(bottom);        
+        graphView.setAutomaticLayout(true);
+
+        // set control pane
+        control = new ControlPane();
+        setLeft(control);
     }
+
+    public ControlPane getControl() {
+        return control;
+    }
+
+
     
     
     
