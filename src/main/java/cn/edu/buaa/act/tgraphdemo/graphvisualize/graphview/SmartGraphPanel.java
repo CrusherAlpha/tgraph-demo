@@ -104,8 +104,13 @@ public class SmartGraphPanel<V, E> extends Pane {
     /*
     INTERACTION WITH VERTICES AND EDGES
      */
+    // mouse left(PRIMARY) double click consumer
     private Consumer<SmartGraphVertex<V>> vertexClickConsumer = null;
     private Consumer<SmartGraphEdge<E, V>> edgeClickConsumer = null;
+
+    // mouse right, single click consumer(for tgraph creates edge).
+    private Consumer<SmartGraphVertex<V>> vertexRightSingleClickConsumer = null;
+    private Consumer<SmartGraphEdge<E, V>> edgeRightSingleClickConsumer = null;
 
     /*
     AUTOMATIC LAYOUT RELATED ATTRIBUTES
@@ -206,7 +211,7 @@ public class SmartGraphPanel<V, E> extends Pane {
 
         initNodes();
 
-        enableDoubleClickListener();
+        enableClickListener();
 
         //automatic layout initializations        
         timer = new AnimationTimer() {
@@ -396,6 +401,14 @@ public class SmartGraphPanel<V, E> extends Pane {
      */
     public void setEdgeDoubleClickAction(Consumer<SmartGraphEdge<E, V>> action) {
         this.edgeClickConsumer = action;
+    }
+
+    public void setVertexSingleClickAction(Consumer<SmartGraphVertex<V>> action) {
+        this.vertexRightSingleClickConsumer = action;
+    }
+
+    public void setEdgeSingleClickAction(Consumer<SmartGraphEdge<E, V>> action) {
+        this.edgeRightSingleClickConsumer = action;
     }
 
     /*
@@ -1080,9 +1093,27 @@ public class SmartGraphPanel<V, E> extends Pane {
      * This method identifies the node that was clicked and, if any, calls the
      * appropriate consumer, i.e., vertex or edge consumers.
      */
-    private void enableDoubleClickListener() {
+    private void enableClickListener() {
         setOnMouseClicked((MouseEvent mouseEvent) -> {
-            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+            if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+                if (mouseEvent.getClickCount() == 1) {
+                    if (vertexRightSingleClickConsumer == null && edgeRightSingleClickConsumer == null) {
+                        return;
+                    }
+                    Node node = pick(SmartGraphPanel.this, mouseEvent.getSceneX(), mouseEvent.getSceneY());
+                    if (node == null) {
+                        return;
+                    }
+                    if (node instanceof SmartGraphVertex && vertexRightSingleClickConsumer != null) {
+                        SmartGraphVertex v = (SmartGraphVertex) node;
+                        vertexRightSingleClickConsumer.accept(v);
+                    } else if (node instanceof SmartGraphEdge && edgeRightSingleClickConsumer != null) {
+                        SmartGraphEdge e = (SmartGraphEdge) node;
+                        edgeRightSingleClickConsumer.accept(e);
+                    }
+                }
+
+            } else if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
                 if (mouseEvent.getClickCount() == 2) {
                     //no need to continue otherwise
                     if (vertexClickConsumer == null && edgeClickConsumer == null) {
@@ -1101,8 +1132,8 @@ public class SmartGraphPanel<V, E> extends Pane {
                         SmartGraphEdge e = (SmartGraphEdge) node;
                         edgeClickConsumer.accept(e);
                     }
-
                 }
+
             }
         });
     }
