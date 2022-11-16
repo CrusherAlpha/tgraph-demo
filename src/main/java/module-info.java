@@ -4,6 +4,7 @@ module cn.edu.buaa.act.tgraphdemo {
     requires java.logging;
     requires commons.logging;
     requires com.dlsc.formsfx;
+    requires MaterialFX;
 
 
     opens cn.edu.buaa.act.tgraphdemo to javafx.fxml;
