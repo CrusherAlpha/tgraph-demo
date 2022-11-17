@@ -2,6 +2,7 @@ package cn.edu.buaa.act.tgraphdemo.electricitysimulation;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class City {
     private final String id;
@@ -33,5 +34,23 @@ public class City {
 
     public HashMap<LocalDate, Double> getProduce() {
         return produce;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return Objects.equals(id, city.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return id;
     }
 }

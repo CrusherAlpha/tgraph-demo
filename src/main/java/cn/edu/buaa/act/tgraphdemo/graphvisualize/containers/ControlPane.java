@@ -29,9 +29,9 @@ public class ControlPane extends VBox {
     private Form form;
 
     public ControlPane() {
-        setSpacing(36);
+        setSpacing(52);
         setAlignment(Pos.TOP_CENTER);
-        setPrefWidth(320);
+        setPrefWidth(336);
         createButton();
         createForm();
         loadStylesheet();
@@ -63,7 +63,7 @@ public class ControlPane extends VBox {
         tpQueryButton.getStyleClass().add("entity-tp-function-button");
         getChildren().add(tpQueryButton);
 
-        resetFormButton = new Button("RESET FORM");
+        resetFormButton = new Button("RESET");
         resetFormButton.getStyleClass().add("reset-button");
         getChildren().add(resetFormButton);
 

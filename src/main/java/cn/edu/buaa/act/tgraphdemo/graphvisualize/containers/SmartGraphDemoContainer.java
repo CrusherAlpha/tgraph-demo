@@ -24,9 +24,7 @@
 package cn.edu.buaa.act.tgraphdemo.graphvisualize.containers;
 
 import cn.edu.buaa.act.tgraphdemo.graphvisualize.graphview.SmartGraphPanel;
-import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 
 /**
  *

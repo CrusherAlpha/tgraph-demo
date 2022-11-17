@@ -32,6 +32,7 @@
             <artifactId>javafx-fxml</artifactId>
             <version>11.0.2</version>
         </dependency>
+
         <!-- for form creation -->
         <dependency>
             <groupId>com.dlsc.formsfx</groupId>
@@ -40,6 +41,7 @@
         </dependency>
 
 
+        <!-- for material table create -->
         <dependency>
             <groupId>io.github.palexdev</groupId>
             <artifactId>materialfx</artifactId>
@@ -80,7 +82,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>cn.edu.buaa.act.tgraphdemo/cn.edu.buaa.act.tgraphdemo.HelloApplication
+                            <mainClass>cn.edu.buaa.act.tgraphdemo/cn.edu.buaa.act.tgraphdemo.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
