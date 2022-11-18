@@ -12,9 +12,20 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.1</junit.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
+
+        <!-- You should install tgraph(branch demo) into maven local repository first. -->
+        <!-- https://github.com/CrusherAlpha/tgraph/tree/demo -->
+        <dependency>
+            <groupId>cn.edu.buaa.act</groupId>
+            <artifactId>tgraph</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- for logging -->
         <dependency>
             <groupId>commons-logging</groupId>
@@ -39,6 +50,7 @@
             <artifactId>formsfx-core</artifactId>
             <version>11.3.2</version>
         </dependency>
+
 
 
         <!-- for material table create -->
@@ -82,8 +94,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>cn.edu.buaa.act.tgraphdemo/cn.edu.buaa.act.tgraphdemo.Main
-                            </mainClass>
+                            <mainClass>cn.edu.buaa.act.tgraphdemo.Main</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
